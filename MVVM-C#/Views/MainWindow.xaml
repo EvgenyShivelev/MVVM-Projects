@@ -1,0 +1,55 @@
+﻿<Window x:Class="MVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVM"
+        mc:Ignorable="d"
+        Title="Recipes DataBase" Height="450" Width="800" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListBox Grid.RowSpan="2" ItemsSource="{Binding Path = Recipe}" SelectedItem="{Binding Path=CurrectRecipe, Mode=TwoWay}" Margin="10,55,0,10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Height="auto" Text="{Binding Path= RecipeInfo}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Grid Grid.Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Добавить" Command="{Binding Path= addRecipe}" Margin="10,57,10,33" Grid.ColumnSpan="5" Grid.RowSpan="2"/>
+            <Button Content="Изменить" Command="{Binding Path=editRecipe}" CommandParameter="{Binding Path= CurrectRecipe }" Margin="11,42,10,48" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="2"/>
+            <Button Content="Удалить" Command="{Binding Path=deleteRecipe}" CommandParameter="{Binding Path= CurrectRecipe}" Margin="10,27,10,63" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="2"/>
+            <Button Content="По Имени" Command="{Binding Path=sortByName}"  Margin="-517,10,486,26"/>
+            <Button Content="По времени" Command="{Binding Path=sortByDate}" Margin="-428,10,391,26"/>
+      
+        </Grid>
+        <Label Content="База данных рецептов" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Grid.Column="1" Height="28" Width="244"/>
+      
+
+    </Grid>
+
+</Window>

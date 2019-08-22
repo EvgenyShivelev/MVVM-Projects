@@ -1,0 +1,59 @@
+﻿<Window x:Class="MVVM.Views.RecipeCardN"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVM.Views"
+        mc:Ignorable="d"
+        Title="RecipeCard" Height="242.334" Width="454.001" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="224*"/>
+            <ColumnDefinition Width="134*"/>
+            <ColumnDefinition Width="91*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <TextBox  IsEnabled="{Binding isEnabled}" Grid.ColumnSpan="3" FontSize="12" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Text="{Binding CurrectRecipe.Name, Mode=TwoWay}" Margin="102,10,68,18"/>
+
+        <!--center-->
+        <Grid Grid.Row="1" Grid.RowSpan="1" Grid.ColumnSpan="3" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="9*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <DataGrid x:Name="steps" Grid.RowSpan="2" AutoGenerateColumns="False" ItemsSource="{Binding Path=Text, Mode=TwoWay}" Margin="19,-7,1,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn IsReadOnly="True" Header="Шаг" Binding="{Binding Path=StepId , Mode=TwoWay}" />
+                    <DataGridTextColumn IsReadOnly="True" Header="Действие" Binding="{Binding Path=StepDescription ,Mode=TwoWay}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!--Добавить сюда удаление текущегоэлемента-->
+        </Grid>
+
+        <!--down-->
+        <Grid Grid.Row="2" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Command="{Binding StopRec}" Content="Удалить" FontSize="14" Margin="20,4,109,4"/>
+            <Button Command="{Binding AddNewStep}"  Content="Добавить"  FontSize="14" Margin="120,4,1,4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Button Command="{Binding EndEdit}" CommandParameter="win" Content="Готово" Grid.Column="1" Margin="4,4,45,4"/>
+        </Grid>
+        <Label Content="Имя рецепта" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.491,0.231"/>
+
+
+    </Grid>
+</Window>
